@@ -42,6 +42,16 @@ const store = new Vuex.Store({
     modalFooter (state, data) {
       state.modalFooter = data
     },
+    resetQuestions (state) {
+      state.state = {
+        questions: [],
+        score: 0,
+        answers: [],
+        showModal: false,
+        modalFooter: false,
+        modalTitle: '',
+      }
+    },
   },
   actions: {
     fetchQuestions (context) {
@@ -72,6 +82,9 @@ const store = new Vuex.Store({
     },
     modalFooter (context, data) {
       context.commit('modalFooter', data)
+    },
+    resetQuestions (context) {
+      context.commit('resetQuestions')
     },
   },
 })

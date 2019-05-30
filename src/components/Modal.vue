@@ -43,6 +43,9 @@
         this.$store.dispatch('modalTitle', `Your score is ${this.$store.state.score} / 10`)
         this.$store.dispatch('modalFooter', false)
         this.$store.dispatch('showModal', true)
+        this.$store.dispatch('resetQuestions')
+        this.$store.dispatch('fetchQuestions')
+        document.getElementById('form-questions').reset()
       },
       cancelSubmit: function () {
         this.$store.dispatch('showModal', false)
