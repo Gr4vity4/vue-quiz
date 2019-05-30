@@ -10,7 +10,8 @@
             </div>
             <div class="flex justify-end">
                 <button type="button"
-                        class="border border-green-300 pt-2 pb-2 rounded-l rounded-r font-bold bg-green-400 text-white hover:bg-green-500 w-full lg:w-40">
+                        class="border border-green-300 pt-2 pb-2 rounded-l rounded-r font-bold bg-green-400 text-white hover:bg-green-500 w-full lg:w-40"
+                        @click="submit">
                     Submit
                 </button>
             </div>
@@ -32,8 +33,13 @@
     components: {
       Question,
     },
+    methods: {
+      submit: function () {
+        console.log('submit')
+      },
+    },
     mounted () {
-      this.$axios.get('https://opentdb.com/api.php?amount=5&category=9&difficulty=easy&type=multiple').
+      this.$axios.get('https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple').
         then(response => {
           this.questions = response.data.results
         })

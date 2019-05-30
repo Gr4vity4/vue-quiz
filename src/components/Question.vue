@@ -21,6 +21,7 @@
       answers: function () {
         let data = [...this.quiz.incorrect_answers]
         data.push(this.quiz.correct_answer)
+        data = _.shuffle(data)
         return data
       },
     },
