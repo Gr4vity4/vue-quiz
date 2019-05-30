@@ -5,7 +5,7 @@
         </p>
 
         <div class="flex flex-col mx-auto mt-4 max-w-2xl min-h-screen">
-            <div v-for="(question, index) in questions" :key="index">
+            <div v-for="(question, index) in this.$store.state.questions" :key="index">
                 <Question :id="index + 1" :quiz="question"/>
             </div>
             <div class="flex justify-end">
@@ -35,14 +35,11 @@
     },
     methods: {
       submit: function () {
-        console.log('submit')
+        this.$store.dispatch('totalScore')
       },
     },
     mounted () {
-      this.$axios.get('https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple').
-        then(response => {
-          this.questions = response.data.results
-        })
+      this.$store.dispatch('fetchQuestions')
     },
   }
 </script>

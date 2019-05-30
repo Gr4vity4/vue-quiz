@@ -4,7 +4,7 @@
             {{ `${id}. ${quiz.question}` }}
         </p>
         <div v-for="(answer, index) in answers" :key="index" class="text-left pl-8">
-            <input type="radio" class="mr-2" :name="`answer_${id}`" :value="answer"
+            <input type="radio" class="mr-2" :id="id" :name="`answer_${id}`" :value="answer"
                    @click="selected">
             {{ answer }}
         </div>
@@ -18,16 +18,22 @@
       'id',
       'quiz',
     ],
-    data: function () {
-      return {
-        answerCorrect: this.quiz.correct_answer,
-      }
-    },
     methods: {
       selected: function (x) {
         let answerSelected = x.target.value
-        console.log('you selected is : ' + answerSelected)
-        console.log('answer is : ' + this.answerCorrect)
+        if (answerSelected === this.quiz.correct_answer) {
+          this.$store.dispatch('answerSelected', {
+            id: x.target.id,
+            value: answerSelected,
+            correct: true,
+          })
+        } else {
+          this.$store.dispatch('answerSelected', {
+            id: x.target.id,
+            value: answerSelected,
+            correct: false,
+          })
+        }
       },
     },
     computed: {
