@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div class="container">
+        <div class="container mx-auto border border-gray-300 shadow-lg mb-10">
             <Navbar/>
             <Home/>
         </div>
