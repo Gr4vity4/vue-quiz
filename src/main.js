@@ -15,6 +15,9 @@ const store = new Vuex.Store({
     questions: [],
     score: 0,
     answers: [],
+    showModal: false,
+    modalFooter: false,
+    modalTitle: '',
   },
   mutations: {
     questions (state, data) {
@@ -29,6 +32,15 @@ const store = new Vuex.Store({
     },
     resetScore (state) {
       state.score = 0
+    },
+    showModal (state, status) {
+      state.showModal = status
+    },
+    modalTitle (state, data) {
+      state.modalTitle = data
+    },
+    modalFooter (state, data) {
+      state.modalFooter = data
     },
   },
   actions: {
@@ -50,7 +62,16 @@ const store = new Vuex.Store({
           context.commit('incrementScore')
         }
       })
-      console.log(`your score is ${context.state.score}/10`)
+      console.log(`your score is ${context.state.score} / 10`)
+    },
+    showModal (context, status) {
+      context.commit('showModal', status)
+    },
+    modalTitle (context, data) {
+      context.commit('modalTitle', data)
+    },
+    modalFooter (context, data) {
+      context.commit('modalFooter', data)
     },
   },
 })
